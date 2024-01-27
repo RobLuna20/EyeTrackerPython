@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 
 cam = cv2.VideoCapture(0)
-face_mesh = mp.solutions.face_mesh.FaceMesh()
+face_mesh = mp.solutions.face_mesh.FaceMesh(refine_landmarks=True) #478 landmarks
 
 while True:
     _, frame = cam.read() #read what is coming from camera
@@ -17,7 +17,7 @@ while True:
             y = int(landmark.y * frame_h)
             cv2.circle(frame, (x,y), 3, (0,255,0)) #draw circle on frame, center xy, how big radius, color rgb
             print(x, y)
-    cv2.imshow('Eye Controlled Mouse', frame)
+    cv2.imshow('Face Tracker', frame)
     cv2.waitKey(1)
 
 
